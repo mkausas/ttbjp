@@ -16,7 +16,7 @@ public class Main extends JFrame implements Runnable, KeyListener {
 
     // Custom classes
     private Panel panel = new Panel();
-    private BossManager manager = new BossManager();
+    private InteractionManager manager = new InteractionManager();
 
     public static ArrayList<Drawable> drawables = new ArrayList<Drawable>();
     public static ArrayList<Actable> actables = new ArrayList<Actable>();
@@ -38,6 +38,7 @@ public class Main extends JFrame implements Runnable, KeyListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         manager.setInteractionObjects(player, ai1, ai2, protoBall);
+        manager.setPanel(panel);
 //        System.out.println("ball x and y initially = " + protoBall.getCenterX() + ", " + protoBall.getCenterY());
 //        System.out.println("player position = " + player.getCenterX() + ", " + player.getCenterY());
 
@@ -76,15 +77,10 @@ public class Main extends JFrame implements Runnable, KeyListener {
                 // repaint
                 panel.repaint();
 
-                Thread.sleep(10);
+                Thread.sleep(3);
             } catch (Exception ex) { ex.printStackTrace(); }
         }
     }
-
-
-
-
-
 
 
 

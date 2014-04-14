@@ -3,6 +3,7 @@ package prototypingclasses;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.Random;
 import toss.the.ball.java.prototype.Actable;
 import toss.the.ball.java.prototype.Drawable;
 import toss.the.ball.java.prototype.Main;
@@ -20,12 +21,15 @@ public class HumanPlayer extends Rectangle implements Actable, Drawable {
 
     private boolean hasBall = true;
 
+    private Random randomGenerator;
+
     public HumanPlayer() {
 //        super(SIZE, SIZE);
         setBounds((int) x, (int) y, SIZE, SIZE);
 
         setLocation((int) x, (int) y);
-        System.out.println("set player location to " + x + ", " + y);
+
+        randomGenerator = new Random();
     }
 
     @Override
@@ -39,8 +43,13 @@ public class HumanPlayer extends Rectangle implements Actable, Drawable {
         g.drawRect((int) x, (int) y, SIZE, SIZE);
     }
 
-    public void setHasBall(boolean hasBall) {
+    public int setHasBall(boolean hasBall) {
         this.hasBall = hasBall;
-    }
 
+        if (randomGenerator.nextDouble() >= 0.5) {
+            return AIPlayer.LEFT;
+        } else {
+            return AIPlayer.RIGHT;
+        }
+    }
 }

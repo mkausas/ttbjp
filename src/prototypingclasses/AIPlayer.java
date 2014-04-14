@@ -42,28 +42,6 @@ public class AIPlayer extends Rectangle implements Actable, Drawable {
     @Override
     public void act() {
         setLocation((int) x, (int) y);
-
-        if (hasBall) {
-            double randomDouble = randomSelector.nextDouble();
-
-            if (THIS_PLAYER == LEFT) {
-                if (randomDouble >= 0.5) {
-                    // toss right
-
-                } else {
-                    // toss to human
-                }
-
-            } else if (THIS_PLAYER == RIGHT) {
-                if (randomDouble >= 0.5) {
-                    // toss left
-                } else {
-                    // toss to human
-                }
-            }
-            hasBall = false;
-        }
-
     }
 
     @Override
