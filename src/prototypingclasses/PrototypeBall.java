@@ -39,7 +39,7 @@ public class PrototypeBall extends Rectangle implements Drawable, Actable {
 
     @Override
     public void act() {
-//        setLocation((int) x - (SIZE / 2) + 1, (int) y - (SIZE / 2) + 1);
+        setLocation((int) x - (SIZE / 2) + 1, (int) y - (SIZE / 2) + 1);
 
         // vectors to target
         vx = setpointX - x;
@@ -51,9 +51,8 @@ public class PrototypeBall extends Rectangle implements Drawable, Actable {
     }
 
     public void setTarget(int setpointX, int setpointY) {
-        this.setpointX = setpointX;
-        this.setpointY = setpointY;
-        System.out.println("New setpoints are " + setpointX + ", " + setpointY);
+        this.setpointX = setpointX - (SIZE / 2);
+        this.setpointY = setpointY - (SIZE / 2);
     }
 
 }

@@ -18,9 +18,11 @@ public class HumanPlayer extends Rectangle implements Actable, Drawable {
             x = (Main.WIDTH / 2) - (SIZE / 2),
             y = (Main.HEIGHT - (SIZE * 2));
 
+    private boolean hasBall = true;
 
     public HumanPlayer() {
-        super(SIZE, SIZE);
+//        super(SIZE, SIZE);
+        setBounds((int) x, (int) y, SIZE, SIZE);
 
         setLocation((int) x, (int) y);
         System.out.println("set player location to " + x + ", " + y);
@@ -33,8 +35,12 @@ public class HumanPlayer extends Rectangle implements Actable, Drawable {
 
     @Override
     public void draw(Graphics g) {
-        g.setColor(Color.red);
+        g.setColor(hasBall ? Color.green : Color.red);
         g.drawRect((int) x, (int) y, SIZE, SIZE);
+    }
+
+    public void setHasBall(boolean hasBall) {
+        this.hasBall = hasBall;
     }
 
 }

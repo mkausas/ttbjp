@@ -100,16 +100,13 @@ public class Main extends JFrame implements Runnable, KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getKeyCode() == e.VK_LEFT) {
-            protoBall.setTarget((int) ai1.getCenterX(), (int) ai1.getCenterY());
+        if (player.intersects(protoBall)) {
+            if (e.getKeyCode() == e.VK_LEFT) {
+                protoBall.setTarget((int) ai1.getCenterX(), (int) ai1.getCenterY());
 
-        } else if (e.getKeyCode() == e.VK_RIGHT) {
-            protoBall.setTarget((int) ai2.getCenterX(), (int) ai2.getCenterY());
-
-        } else if (e.getKeyCode() == e.VK_DOWN) {
-            protoBall.setTarget((int) player.getCenterX()
-                    - (PrototypeBall.SIZE / 2) + 1,
-                    (int) player.getCenterY() - (PrototypeBall.SIZE / 2) + 1);
+            } else if (e.getKeyCode() == e.VK_RIGHT) {
+                protoBall.setTarget((int) ai2.getCenterX(), (int) ai2.getCenterY());
+            }
         }
     }
 

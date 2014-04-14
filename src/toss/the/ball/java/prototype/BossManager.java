@@ -1,7 +1,11 @@
 package toss.the.ball.java.prototype;
 
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import prototypingclasses.AIPlayer;
+import prototypingclasses.HumanPlayer;
+import prototypingclasses.PrototypeBall;
 
 /**
  *
@@ -32,9 +36,32 @@ public class BossManager implements Runnable {
     }
 
     private void interact() {
-        if (ball.intersects(player))
-            System.out.println("intersection!");
+        // TODO: Set it to track based on distance from each center
+        // for now this will do...
+        if (player.intersects(ball)) {
+            ((HumanPlayer) player).setHasBall(true);
+        } else {
+            ((HumanPlayer) player).setHasBall(false);
+        }
+
+        if (ai1.intersects(ball)) {
+            int playerToThrowTo = ((AIPlayer) ai1).setHasBall(true);
+            Point targetPoint = getCoords(playerToThrowTo);
+            ((PrototypeBall) ball).setTarget((int) targetPoint.getX(), (int) targetPoint.getY());
+        } else {
+            ((AIPlayer) ai1).setHasBall(false);
+        }
+
+        if (ai2.intersects(ball)) {
+            int playerToThrowTo = ((AIPlayer) ai2).setHasBall(true);
+            Point targetPoint = getCoords(playerToThrowTo);
+            ((PrototypeBall) ball).setTarget((int) targetPoint.getX(), (int) targetPoint.getY());
+        } else {
+            ((AIPlayer) ai2).setHasBall(false);
+        }
+
     }
+
 
     public void setInteractionObjects(
             Rectangle player, Rectangle ai1, Rectangle ai2, Rectangle ball) {
@@ -42,6 +69,19 @@ public class BossManager implements Runnable {
         this.ai1    = ai1;
         this.ai2    = ai2;
         this.ball   = ball;
+    }
+
+    public Point getCoords(int playerCode) {
+        switch (playerCode) {
+            case AIPlayer.HUMAN:
+                return new Point((int) player.getCenterX(), (int) player.getCenterY());
+            case AIPlayer.LEFT:
+                return new Point((int) ai1.getCenterX(), (int) ai1.getCenterY());
+            case AIPlayer.RIGHT:
+                return new Point((int) ai2.getCenterX(), (int) ai2.getCenterY());
+        }
+
+        return null;
     }
 
 }
