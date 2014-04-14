@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import prototypingclasses.AIPlayer;
 import prototypingclasses.HumanPlayer;
-import prototypingclasses.PrototypeBall;
+import prototypingclasses.Ball;
 
 /**
  *
@@ -22,7 +22,7 @@ public class Main extends JFrame implements Runnable, KeyListener {
     public static ArrayList<Actable> actables = new ArrayList<Actable>();
 
     // Objects that interact
-    private PrototypeBall protoBall = new PrototypeBall();
+    private Ball ball = new Ball();
     private HumanPlayer player = new HumanPlayer();
     private AIPlayer ai1 = new AIPlayer(AIPlayer.LEFT);
     private AIPlayer ai2 = new AIPlayer(AIPlayer.RIGHT);
@@ -37,21 +37,19 @@ public class Main extends JFrame implements Runnable, KeyListener {
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        manager.setInteractionObjects(player, ai1, ai2, protoBall);
+        manager.setInteractionObjects(player, ai1, ai2, ball);
         manager.setPanel(panel);
-//        System.out.println("ball x and y initially = " + protoBall.getCenterX() + ", " + protoBall.getCenterY());
-//        System.out.println("player position = " + player.getCenterX() + ", " + player.getCenterY());
 
         addKeyListener(this);
 
         // actables
-        actables.add(protoBall);
+        actables.add(ball);
         actables.add(player);
         actables.add(ai1);
         actables.add(ai2);
 
         // drawables
-        drawables.add(protoBall);
+        drawables.add(ball);
         drawables.add(player);
         drawables.add(ai1);
         drawables.add(ai2);
@@ -96,12 +94,13 @@ public class Main extends JFrame implements Runnable, KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (player.intersects(protoBall)) {
+        if (player.intersects(ball)) {
             if (e.getKeyCode() == e.VK_LEFT) {
-                protoBall.setTarget((int) ai1.getCenterX(), (int) ai1.getCenterY());
-
+                manager.turnOffWallTimer();
+                ball.setTarget((int) ai1.getCenterX(), (int) ai1.getCenterY());
             } else if (e.getKeyCode() == e.VK_RIGHT) {
-                protoBall.setTarget((int) ai2.getCenterX(), (int) ai2.getCenterY());
+                manager.turnOffWallTimer();
+                ball.setTarget((int) ai2.getCenterX(), (int) ai2.getCenterY());
             }
         }
     }

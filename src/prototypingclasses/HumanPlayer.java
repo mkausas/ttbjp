@@ -14,7 +14,7 @@ import toss.the.ball.java.prototype.Main;
  */
 public class HumanPlayer extends Rectangle implements Actable, Drawable {
 
-    public static int SIZE = PrototypeBall.SIZE;
+    public static int SIZE = Ball.SIZE;
     private double
             x = (Main.WIDTH / 2) - (SIZE / 2),
             y = (Main.HEIGHT - (SIZE * 2));

@@ -10,7 +10,7 @@ import toss.the.ball.java.prototype.Main;
  *
  * @author Marty
  */
-public class PrototypeBall extends Rectangle implements Drawable, Actable {
+public class Ball extends Rectangle implements Drawable, Actable {
 
     private double
             x = (Main.WIDTH / 2) - (SIZE / 2),
@@ -26,7 +26,7 @@ public class PrototypeBall extends Rectangle implements Drawable, Actable {
 
     public static int SIZE = 50;
 
-    public PrototypeBall() {
+    public Ball() {
         super(SIZE, SIZE);
 
         setLocation((int) x, (int) y);

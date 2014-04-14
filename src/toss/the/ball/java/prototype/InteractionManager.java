@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import prototypingclasses.AIPlayer;
 import prototypingclasses.HumanPlayer;
-import prototypingclasses.PrototypeBall;
+import prototypingclasses.Ball;
 
 /**
  *
@@ -76,7 +76,7 @@ public class InteractionManager implements Runnable {
                 ballTarget = playerToThrowTo;
                 System.out.println("ball possesion just changed ai1");
                 Point targetPoint = getCharacterCoords(playerToThrowTo);
-                ((PrototypeBall) ball).setTarget((int) targetPoint.getX(), (int) targetPoint.getY());
+                ((Ball) ball).setTarget((int) targetPoint.getX(), (int) targetPoint.getY());
             }
         } else {
             ((AIPlayer) ai1).setHasBall(false);
@@ -92,7 +92,7 @@ public class InteractionManager implements Runnable {
                 ballTarget = playerToThrowTo;
                 System.out.println("ball possesion just changed ai2");
                 Point targetPoint = getCharacterCoords(playerToThrowTo);
-                ((PrototypeBall) ball).setTarget((int) targetPoint.getX(), (int) targetPoint.getY());
+                ((Ball) ball).setTarget((int) targetPoint.getX(), (int) targetPoint.getY());
             }
         } else {
             ((AIPlayer) ai2).setHasBall(false);
@@ -103,6 +103,10 @@ public class InteractionManager implements Runnable {
 
         System.out.println("game over = " + gameOver);
 
+    }
+
+    public void turnOffWallTimer() {
+        panel.setSideTimer(0);
     }
 
 

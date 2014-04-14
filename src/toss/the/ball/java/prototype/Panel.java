@@ -52,10 +52,10 @@ public class Panel extends JPanel {
     }
 
     public void setSideTimer(int side) {
-        // TODO: make this return something to indicate it's over...
         this.sideTimer = side;
         wallHeight = 0;
-        wallSpeed += 1;
+        if (side != 0)
+            wallSpeed += 1;
     }
 
     public boolean timerHasRunOut() {

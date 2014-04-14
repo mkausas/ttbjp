@@ -15,7 +15,7 @@ import toss.the.ball.java.prototype.Main;
 public class AIPlayer extends Rectangle implements Actable, Drawable {
 
     public static final int LEFT = 1, RIGHT = 2, HUMAN = 3;
-    private int SIZE = PrototypeBall.SIZE;
+    private int SIZE = Ball.SIZE;
 
     private boolean hasBall = false;
 
